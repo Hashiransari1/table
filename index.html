@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tables </title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #eef2f7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      width: 200px;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4a69bd;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    button:hover {
+      background-color: #3b5cad;
+    }
+
+    table {
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      width: 300px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #4a69bd;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Multiplication Table Generator</h2>
+  <input type="number" id="numberInput" placeholder="Enter a number" />
+  <button onclick="generateTable()">Generate Table</button>
+  <div id="table-container"></div>
+
+  <script>
+    function generateTable() {
+      const num = document.getElementById("numberInput").value;
+      const container = document.getElementById("table-container");
+      container.innerHTML = ""; // Clear previous table
+
+      if (num === "" || isNaN(num)) {
+        container.innerHTML = "<p style='color: red;'>Please enter a valid number.</p>";
+        return;
+      }
+
+      const table = document.createElement("table");
+
+      // Create header
+      const header = document.createElement("tr");
+      const th1 = document.createElement("th");
+      th1.textContent = "Expression";
+      const th2 = document.createElement("th");
+      th2.textContent = "Result";
+      header.appendChild(th1);
+      header.appendChild(th2);
+      table.appendChild(header);
+
+      // Generate 1-10 rows
+      for (let i = 1; i <= 10; i++) {
+        const row = document.createElement("tr");
+        const td1 = document.createElement("td");
+        const td2 = document.createElement("td");
+
+        td1.textContent = `${num} × ${i}`;
+        td2.textContent = num * i;
+
+        row.appendChild(td1);
+        row.appendChild(td2);
+        table.appendChild(row);
+      }
+
+      container.appendChild(table);
+    }
+  </script>
+
+</body>
+</html>
